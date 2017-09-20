@@ -4,7 +4,7 @@ SRC = $(wildcard *.c)
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
-all: $(NAME)
+all: $(NAME) clean
 
 $(NAME): $(SRC)
 	gcc -Wall -Wextra -Werror -c $(SRC)

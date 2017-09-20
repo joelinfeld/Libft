@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   getmod.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinfeld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 16:11:42 by jinfeld           #+#    #+#             */
-/*   Updated: 2017/01/19 00:36:01 by jinfeld          ###   ########.fr       */
+/*   Created: 2017/08/23 15:09:38 by jinfeld           #+#    #+#             */
+/*   Updated: 2017/09/20 14:58:29 by jinfeld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnew(size_t size)
+void	getmod(t_flag *flag, char *str)
 {
-	char	*res;
-
-	res = (char *)malloc(sizeof(char) * size + 1);
-	if (!res)
-		return (NULL);
-	res[size] = '\0';
-	if (res)
-	{
-		ft_bzero(res, size + 1);
-	}
-	return (res);
+	if (!ft_strlen(str))
+		flag->mod = 0;
+	if (ft_strequ(str, "l"))
+		flag->mod = 1;
+	if (ft_strequ(str, "ll"))
+		flag->mod = 2;
+	if (ft_strequ(str, "h"))
+		flag->mod = 3;
+	if (ft_strequ(str, "hh"))
+		flag->mod = 4;
+	if (ft_strequ(str, "j"))
+		flag->mod = 5;
+	if (ft_strequ(str, "z"))
+		flag->mod = 6;
 }

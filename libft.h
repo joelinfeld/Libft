@@ -6,7 +6,7 @@
 /*   By: jinfeld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 18:23:21 by jinfeld           #+#    #+#             */
-/*   Updated: 2017/06/20 15:03:37 by jinfeld          ###   ########.fr       */
+/*   Updated: 2017/09/20 14:49:04 by jinfeld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <locale.h>
+# include <stdarg.h>
+# define BUFF_SIZE 2
 
 typedef	struct		s_list
 {
@@ -87,4 +92,56 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 int					ft_isprint(int c);
 char				*ft_itoa_base(uintmax_t n, int base, int caseflag);
+char				*ft_strndup(const char *s1, size_t n);
+int					gnl(const int fd, char **line);
+typedef struct	s_flag
+{
+	int			marg;
+	int			mod;
+	int			octothorpe;
+	int			zero;
+	int			minus;
+	int			plus;
+	int			space;
+	int			precision;
+	int			isneg;
+	int			wide;
+	int			len;
+	int			edit;
+	char		c;
+	char		*str;
+	wchar_t		*wstr;
+}				t_flag;
+char			*di(va_list args, char c, int mod);
+char			*o(va_list args, char c, int mod);
+char			*u(va_list args, char c, int mod);
+char			*x(va_list args, int mod);
+char			*capx(va_list args, int mod);
+char			*ch(va_list args, int mod);
+char			*s(va_list args, int mod);
+char			*p(va_list args, int mod);
+wchar_t			*wc(va_list args, char c, int mod);
+wchar_t			*ws(va_list args, char c, int mod);
+int				ft_putchar_count(char c);
+void			printocto(t_flag flag);
+int				printzero(t_flag flag, int len);
+int				printmarg(t_flag flag, int len);
+int				printminus(t_flag flag, int len);
+char			*conhub(va_list args, char c, int mod);
+wchar_t			*wconhub(va_list args, char c, int mod);
+void			getmod(t_flag *flag, char *str);
+void			flagnew(t_flag *flag);
+int				setflagvalue(int *n, int value, int cur);
+void			flagparse(t_flag *flag, char *str, va_list args);
+int				handleprecision(t_flag *flag, int len);
+int				rightpad(t_flag flag, int len);
+int				leftpad(t_flag flag, int *len);
+int				demprintz(t_flag flag);
+int				printlen(t_flag *flag);
+int				wprintlen(t_flag *flag);
+int				ft_printf(const char *format, ...);
+void			ddelete(char **str);
+void			getformat(char **str, t_flag *flag, va_list args);
+
+
 #endif

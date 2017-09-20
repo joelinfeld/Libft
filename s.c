@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinfeld <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/12 16:11:42 by jinfeld           #+#    #+#             */
-/*   Updated: 2017/01/19 00:36:01 by jinfeld          ###   ########.fr       */
+/*   Created: 2017/08/23 17:15:21 by jinfeld           #+#    #+#             */
+/*   Updated: 2017/09/20 14:58:36 by jinfeld          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnew(size_t size)
+char	*s(va_list args, int mod)
 {
-	char	*res;
+	char	*str;
 
-	res = (char *)malloc(sizeof(char) * size + 1);
-	if (!res)
-		return (NULL);
-	res[size] = '\0';
-	if (res)
-	{
-		ft_bzero(res, size + 1);
-	}
-	return (res);
+	str = NULL;
+	if (mod == 0)
+		str = va_arg(args, char*);
+	return (str);
 }
